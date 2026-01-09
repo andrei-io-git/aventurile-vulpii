@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aventurile Vulpii</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Main stage */
+    .stage {
+      position: relative;
+      width: min(100vw, 1200px);
+      aspect-ratio: 1 / 1;
+      background: url("background.jpg") center / contain no-repeat;
+    }
+
+    /* Transparent clickable areas */
+    .node {
+      position: absolute;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .node:hover {
+      outline: 2px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* Responsive sizing */
+    .node {
+      width: clamp(60px, 8vw, 110px);
+      height: clamp(60px, 8vw, 110px);
+    }
+
+    /* Example positions — adjust as needed */
+    .n1 { top: 10%; left: 68%; }
+    .n2 { top: 28%; left: 83%; }
+    .n3 { top: 45%; left: 78%; }
+    .n4 { top: 63%; left: 70%; }
+    .n5 { top: 75%; left: 48%; }
+    .n6 { top: 62%; left: 24%; }
+    .n7 { top: 40%; left: 18%; }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(90vw, 900px);
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .modal iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stage">
+    <div class="node n1" data-video="F2NmaBz-4kk"></div>
+    <div class="node n2" data-video="rAKRGAEX1i4"></div>
+    <div class="node n3" data-video="VIDEO_ID_3"></div>
+    <div class="node n4" data-video="VIDEO_ID_4"></div>
+    <div class="node n5" data-video="VIDEO_ID_5"></div>
+    <div class="node n6" data-video="VIDEO_ID_6"></div>
+    <div class="node n7" data-video="VIDEO_ID_7"></div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" id="close">&times;</span>
+      <iframe id="player" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const player = document.getElementById("player");
+    const close = document.getElementById("close");
+
+    document.querySelectorAll(".node").forEach(node => {
+      node.addEventListener("click", () => {
+        const videoId = node.dataset.video;
+        player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.classList.add("active");
+      });
+    });
+
+    close.addEventListener("click", closeModal);
+    modal.addEventListener("click", e => {
+      if (e.target === modal) closeModal();
+    });
+
+    function closeModal() {
+      modal.classList.remove("active");
+      player.src = "";
+    }
+  </script>
+
+</body>
+</html>
