@@ -1,4 +1,4 @@
-const CACHE_NAME = "vulpii-v260117-1010";
+const CACHE_NAME = "vulpii-v260117-1032";
 const ASSETS = [
   "/",
   "/index.html",
