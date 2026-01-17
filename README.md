@@ -1,9 +1,9 @@
 # aventurile-vulpii
-single webpage with links to youtube videos
+  - single webpage with links to youtube videos with songs about foxes
 
 
-# hosted 
-https://github.com/andrei-io-git/aventurile-vulpii
+# Hosted 
+  - https://github.com/andrei-io-git/aventurile-vulpii
 
 # Best Practice
  
